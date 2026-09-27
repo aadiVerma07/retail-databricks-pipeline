@@ -1,0 +1,8 @@
+
+bundle:
+  name: retail-databricks-pipeline
+
+targets:
+  dev:
+    default: true
+    mode: development
