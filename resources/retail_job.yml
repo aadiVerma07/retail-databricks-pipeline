@@ -1,0 +1,22 @@
+
+resources:
+  jobs:
+    retail_pipeline:
+      name: retail_pipeline_dev
+
+      tasks:
+        - task_key: ingest_orders
+          notebook_task:
+            notebook_path: ../01_bronze_orders_ingestion
+
+        - task_key: silver_orders
+          depends_on:
+            - task_key: ingest_orders
+          notebook_task:
+            notebook_path: ../02_silver_orders
+
+        - task_key: gold_daily_sales
+          depends_on:
+            - task_key: silver_orders
+          notebook_task:
+            notebook_path: ../03_gold_sales
